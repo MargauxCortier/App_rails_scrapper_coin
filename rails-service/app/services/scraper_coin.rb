@@ -26,8 +26,9 @@ class ScraperCoin
   end
 
   def save
+    Crypto.destroy_all
     @mix.each do |k, v|
-    c = Crypto.create(name: k,price: v.to_i)
+    c = Crypto.create(name: k,price: (v).to_s)
      end
   end
 

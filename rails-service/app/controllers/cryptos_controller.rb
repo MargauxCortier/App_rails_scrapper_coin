@@ -3,7 +3,16 @@ class CryptosController < ApplicationController
 
   # GET /cryptos
   # GET /cryptos.json
-  def index
+  def index   
+    @money = ScraperCoin.new.perform
+     @array = []
+     i = 0
+     while i < @money.keys.length do
+       @array << [@money.keys[i], @money.keys[i]]
+       i += 1
+     end
+       @name = params[:crypto]
+       @price = @money[params[:crypto]]
     @cryptos = Crypto.all
   end
 
@@ -69,6 +78,6 @@ class CryptosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def crypto_params
-      params.fetch(:crypto, {})
+      params.require(:crypto).permit(:name, :price)
     end
 end

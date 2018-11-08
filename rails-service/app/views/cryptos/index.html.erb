@@ -1,23 +1,35 @@
 <p id="notice"><%= notice %></p>
+<h1><span>Check ici le cours de la cryptomonnaie de ton choix !</span></h1>
 
-<h1>Cryptos</h1>
+<div class="formulaire">
+ <%= form_tag('/') do %>
+   <%= select_tag "crypto", options_for_select(@array), class: 'form-control'%>
+   <%= submit_tag "Valider", class: "btn btn-outline-success" %>
+ <% end %>
+</div>
 
-<table>
+<% if @name %>
+ <h6>Le cours actuel de la monnaie <span id="name"><%= @name %> </span> est de <span id="price"><%= @price %></span></h6>
+<% end %>
+
+<h1>Liste of Cryptos</h1>
+
+<table class="table table-sm">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @cryptos.each do |crypto| %>
-      <tr>
-        <p> Name </p><%= crypto.name %><p> price </p><%= crypto.price %><br />
-      </tr>
+  <% @cryptos.each do |crypto| %>
+    <tr>
+      <td><%= crypto.name %></td>
+      <td><%= crypto.price %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New Crypto', new_crypto_path %>
