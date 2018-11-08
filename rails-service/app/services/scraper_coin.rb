@@ -26,11 +26,14 @@ class ScraperCoin
   end
 
   def save
-    hash.save
+    @mix.each do |k, v|
+    c = Crypto.create(name: k,price: v.to_i)
+     end
   end
 
   def perform
     p hash
+    p save 
   end
 
 end 
