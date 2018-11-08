@@ -11,25 +11,3 @@
 <% if @name %>
  <h6>Le cours actuel de la monnaie <span id="name"><%= @name %> </span> est de <span id="price"><%= @price %></span></h6>
 <% end %>
-
-<h1>Liste of Cryptos</h1>
-
-<table class="table table-sm">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @cryptos.each do |crypto| %>
-    <tr>
-      <td><%= crypto.name %></td>
-      <td><%= crypto.price %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-
-<%= link_to 'New Crypto', new_crypto_path %>
