@@ -6,14 +6,14 @@ class CryptosController < ApplicationController
   def index   
     @money = ScraperCoin.new.perform
      @array = []
-     i = 0
-     while i < @money.keys.length do
-       @array << [@money.keys[i], @money.keys[i]]
-       i += 1
+    
+      @money.each do |k, v|
+      @array << k
      end
-       @name = params[:crypto]
-       @price = @money[params[:crypto]]
-    @cryptos = Crypto.all
+
+       @name = params[:cryptochoisie]
+       @price = @money[params[:cryptochoisie]]
+      @cryptos = Crypto.all
   end
 
   # GET /cryptos/1
